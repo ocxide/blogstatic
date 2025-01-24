@@ -65,20 +65,4 @@ export default function MainPostPreview({
       </section>
     </article>
   );
-
-  /* <style lang="scss">
-	article {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		gap: 1rem;
-	}
-
-	img {
-		height: 100%;
-		width: 100%;
-		object-fit: cover;
-		object-position: center;
-		aspect-ratio: 2 / 1;
-	}
-</style> */
 }

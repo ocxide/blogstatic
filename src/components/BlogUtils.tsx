@@ -14,29 +14,16 @@ export function SubCategories({
   subCategories: SubCategory[];
 }) {
   return (
-    <ul>
+    <ul class="flex gap-x-2">
       {subCategories.map((subCategory) => (
         <li>
-          <a href={`/blogs?subCategory=${subCategory.id}`} class="link">
+          <a href={`/blogs?subCategory=${subCategory.id}`} class="[&:not(:last-of-type)]:after:content-[',_']">
             {subCategory.name}
           </a>
         </li>
       ))}
     </ul>
   );
-
-  /* <style lang="scss">
-	a.link {
-		&:not(:last-of-type):after {
-			content: ', ';
-		}
-	}
-
-	ul {
-		display: flex;
-		column-gap: 0.5rem;
-	} 
-</style> */
 }
 
 export function TagComponent({
@@ -49,16 +36,8 @@ export function TagComponent({
   color: string;
 }) {
   return (
-    <a href={`/blogs?tag=${id}`} class={`elevation-1 ${color} tag`}>
+    <a href={`/blogs?tag=${id}`} class={`elevation-1 ${color} tag inline-block rounded-[var(--card-radius)] py-2 px-0`}>
       {name}
     </a>
   );
-
-  /* <style>
-	a {
-		display: inline-block;
-		border-radius: var(--card-radius);
-		padding: 0rem 0.5rem; 
-	}
-</style> */
 }

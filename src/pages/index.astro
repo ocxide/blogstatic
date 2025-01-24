@@ -7,6 +7,8 @@ import Carousel from '@/components/Carousel.tsx';
 import VPostPreview from '@/components/VPostPreview.tsx';
 import ViewMore from '@/components/ViewMore.tsx';
 
+import { Icon } from 'astro-icon/components';
+
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
@@ -78,8 +80,8 @@ function chunks<T>(array: T[], size: number): T[][] {
 			<hr class="my-3" />
 
 			<Carousel client:load pages={pages} class="carousel-collapse">
-				<!-- <Icon client:only="svelte" icon="ooui:next-rtl" slot="leftIcon" /> -->
-				<!-- <Icon client:only="svelte" icon="ooui:next-ltr" slot="rightIcon" /> -->
+				<Icon name="mdi:navigate-before" slot="leftIcon" />
+				<Icon name="mdi:navigate-next" slot="rightIcon" />
 
 				{
 					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (

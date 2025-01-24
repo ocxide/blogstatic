@@ -4,11 +4,11 @@ import { CategoryText, SubCategories, TagComponent } from "./BlogUtils";
 export default function VPostPreview({ post }: { post: BlogPreview }) {
   return (
     <article class="relative grid grid-rows-[auto_auto_auto_1fr] group">
-      <div class="img-wrapper">
+      <div class="w-full aspect-[2/1] overflow-hidden">
         <img
           src={post.mainImage}
           alt={`${post.title}`}
-          class="group-hover:scale-110"
+          class="group-hover:scale-110 w-full h-full object-cover object-center transition-transform"
         />
       </div>
 
@@ -37,21 +37,4 @@ export default function VPostPreview({ post }: { post: BlogPreview }) {
       <a href={`/blogs/${post.id}`} class="absolute inset-0 w-full h-full" />
     </article>
   );
-
-  /* <style lang="scss">
-	.img-wrapper {
-		width: 100%;
-		aspect-ratio: 2 / 1;
-		overflow: hidden;
-	}
-
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
-
-		transition: transform 0.2s ease-in-out;
-	}
-</style> */
 }
