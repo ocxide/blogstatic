@@ -1,11 +1,119 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MainPostPreview from '@/components/MainPostPreview.tsx';
+import Carousel from '@/components/Carousel.tsx';
+
+import VPostPreview from '@/components/VPostPreview.tsx';
+import ViewMore from '@/components/ViewMore.tsx';
+
+export const LATEST_PAGE_SIZE = 3;
+export const LATEST_PAGES = 3;
+
+const blog = {
+	id: '1',
+	title: 'My first blog',
+	preview: 'My first blog',
+	mainImage: 'https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+	category: {
+		id: '1',
+		name: 'Astro',
+	},
+	createdAt: new Date(),
+	subCategories: [{
+		id: '1',
+		name: 'Astro',
+	}],
+	tags: [
+		{
+			id: '1',
+			name: 'Astro',
+		}
+	],
+};
+
+const latests: any[] = [blog, blog, blog] ;
+const bellowBlogs = latests.slice(1);
+
+const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
+const pages =
+	Math.floor((bellowBlogs.length - 1) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
+
+function chunks<T>(array: T[], size: number): T[][] {
+	const nChunks = Math.floor((array.length - 1) / size) + 1;
+	const chunks: T[][] = [];
+
+	for (let i = 0; i < nChunks; i++) {
+		chunks.push(array.slice(i * size, i * size + size));
+	}
+
+	return chunks;
+}
 ---
 
-<Layout>
-	<Welcome />
+<Layout title='Static blog'>
+		<main class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto pt-6">
+		<h2>MeBlog</h2>
+
+		<hr class="mb-4" />
+
+		<section>
+			<h3>Latests</h3>
+
+			{
+				latests.at(0) && (
+					<MainPostPreview
+						preview={latests[0].preview}
+						title={latests[0].title}
+						mainImage={latests[0].mainImage}
+						id={latests[0].id}
+						category={latests[0].category}
+						createdAt={latests[0].createdAt}
+						subCategories={latests[0].subCategories}
+						tags={latests[0].tags}
+					/>
+				)
+			}
+
+			<hr class="my-3" />
+
+			<Carousel client:load pages={pages} class="carousel-collapse">
+				<!-- <Icon client:only="svelte" icon="ooui:next-rtl" slot="leftIcon" /> -->
+				<!-- <Icon client:only="svelte" icon="ooui:next-ltr" slot="rightIcon" /> -->
+
+				{
+					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
+						<ul class="chunk grid sm:grid-cols-3 mx-16 sm:mx-0 gap-2">
+							{chunk.map(blog => (
+								<li class="min-w-0">
+									<VPostPreview post={blog} />
+								</li>
+							))}
+
+							{!(!isExact && i === pages - 1) ? null : (
+								<li class="grid">
+									<ViewMore />
+								</li>
+							)}
+						</ul>
+					))
+				}
+
+				{
+					!isExact ? null : (
+					<ViewMore />
+					)
+				}
+			</Carousel>
+		</section>
+	</main>
+
+	<noscript>
+		<style>
+			.carousel-collapse {
+				display: unset;
+			}
+		</style>
+	</noscript>
+
 </Layout>
