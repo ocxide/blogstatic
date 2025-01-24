@@ -1,0 +1,35 @@
+@mixin card {
+	background-color: var(--card-bg-color, white);
+	border-radius: var(--card-radius);
+	color: theme('colors.text');
+}
+
+@mixin card-x-padding {
+	padding-left: var(--card-x-padding);
+	padding-right: var(--card-x-padding);
+}
+
+@mixin card-y-padding {
+	padding-top: var(--card-y-padding);
+	padding-bottom: var(--card-y-padding);
+}
+
+@mixin card-header {
+	@include card-x-padding();
+	padding-top: var(--card-y-padding);
+}
+
+@mixin card-title {
+	font-size: 1.25rem;
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+@mixin card-footer {
+	@include card-x-padding();
+	padding-bottom: var(--card-y-padding);
+}
+
+@mixin card-content {
+	@include card-x-padding();
+}

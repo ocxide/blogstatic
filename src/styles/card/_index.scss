@@ -1,0 +1,34 @@
+@use 'card';
+
+.card {
+	@include card.card;
+}
+
+.card-header {
+	@include card.card-header;
+}
+
+.card-title {
+	@include card.card-title;
+}
+
+.card-footer {
+	@include card.card-footer;
+}
+
+.card-content {
+	@include card.card-content;
+}
+
+.card-x-padding {
+	@include card.card-x-padding;
+}
+
+.card-y-padding {
+	@include card.card-y-padding;
+}
+
+.card-padding {
+	@include card.card-x-padding;
+	@include card.card-y-padding;
+}

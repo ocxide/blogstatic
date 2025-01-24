@@ -1,0 +1,37 @@
+@use '../card/card';
+
+@mixin dialog {
+	@include card.card();
+	&::backdrop {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}
+
+@mixin dialog-header {
+	@include card.card-header();
+}
+
+@mixin dialog-title {
+	@include card.card-title();
+}
+
+@mixin dialog-footer {
+	@include card.card-footer();
+}
+
+.dialog {
+	@include dialog();
+	min-width: 320px;
+}
+
+.dialog-header {
+	@include dialog-header();
+}
+
+.dialog-title {
+	@include dialog-title();
+}
+
+.dialog-footer {
+	@include dialog-footer();
+}

@@ -1,0 +1,23 @@
+@mixin colors($color) {
+	--color: var(--#{$color}-color);
+	--hover-color: var(--#{$color}-hover-color);
+	--active-color: var(--#{$color}-active-color);
+}
+
+.button.primary {
+	@include colors(primary);
+}
+
+.button.accent {
+	@include colors(accent);
+}
+
+.button.warn {
+	@include colors(warn);
+}
+
+.button[disabled] {
+	--color: var(--disabled-color);
+	--hover-color: var(--disabled-color);
+	--active-color: var(--disabled-color);
+}

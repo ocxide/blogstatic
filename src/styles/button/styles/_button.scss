@@ -1,0 +1,16 @@
+.button {
+	text-align: center;
+	padding: 8px 15px;
+
+	--color: theme('colors.text');
+	--hover-color: theme('colors.text');
+	--active-color: theme('colors.text');
+
+	/* @include icon.icon {
+		font-size: 1.5rem;
+	} */
+}
+
+a.button {
+	display: inline-block;
+}

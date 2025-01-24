@@ -1,0 +1,28 @@
+@use './theme';
+@forward './button';
+@forward './link';
+@forward './card';
+@forward './dialog';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+// @forward '../lib/modules/ui/link/styles/link.scss';
+// @forward '../lib/modules/ui/font/styles.scss';
+
+body {
+	&.dark {
+		@include theme.dark();
+	}
+
+	@include theme.bindings();
+	@include theme.light();
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		@include theme.dark();
+	}
+}

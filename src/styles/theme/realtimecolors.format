@@ -1,0 +1,55 @@
+@mixin light {
+	--text: ${textL.rgbRaw};
+
+	--background-de2: ${bgL.rgbRaw.300};
+	--background-de1: ${bgL.rgbRaw.400};
+	--background: ${bgL.rgbRaw};
+	--background-el1: ${bgL.rgbRaw.600};
+	--background-el1: ${bgL.rgbRaw.700};
+
+	--primary-de2: ${primaryL.rgbRaw.300};
+	--primary-de1: ${primaryL.rgbRaw.400};
+	--primary: ${primaryL.rgbRaw};
+	--primary-el1: ${primaryL.rgbRaw.600};
+	--primary-el1: ${primaryL.rgbRaw.700};
+
+	--secondary-de2: ${secondaryL.rgbRaw.300};
+	--secondary-de1: ${secondaryL.rgbRaw.400};
+	--secondary: ${secondaryL.rgbRaw};
+	--secondary-el1: ${secondaryL.rgbRaw.600};
+	--secondary-el1: ${secondaryL.rgbRaw.700};
+
+	--accent-de2: ${accentL.rgbRaw.300};
+	--accent-de1: ${accentL.rgbRaw.400};
+	--accent: ${accentL.rgbRaw};
+	--accent-el1: ${accentL.rgbRaw.600};
+	--accent-el1: ${accentL.rgbRaw.700};
+}
+
+@mixin dark {
+	--text: ${textD.rgbRaw};
+
+	--background-de2: ${bgD.rgbRaw.300};
+	--background-de1: ${bgD.rgbRaw.400};
+	--background: ${bgD.rgbRaw};
+	--background-el1: ${bgD.rgbRaw.600};
+	--background-el1: ${bgD.rgbRaw.700};
+
+	--primary-de2: ${primaryD.rgbRaw.300};
+	--primary-de1: ${primaryD.rgbRaw.400};
+	--primary: ${primaryD.rgbRaw};
+	--primary-el1: ${primaryD.rgbRaw.600};
+	--primary-el1: ${primaryD.rgbRaw.700};
+
+	--secondary-de2: ${secondaryD.rgbRaw.300};
+	--secondary-de1: ${secondaryD.rgbRaw.400};
+	--secondary: ${secondaryD.rgbRaw};
+	--secondary-el1: ${secondaryD.rgbRaw.600};
+	--secondary-el1: ${secondaryD.rgbRaw.700};
+
+	--accent-de2: ${accentD.rgbRaw.300};
+	--accent-de1: ${accentD.rgbRaw.400};
+	--accent: ${accentD.rgbRaw};
+	--accent-el1: ${accentD.rgbRaw.600};
+	--accent-el1: ${accentD.rgbRaw.700};
+}

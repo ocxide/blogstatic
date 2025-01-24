@@ -1,0 +1,18 @@
+.button.raised {
+	background: var(--color);
+	color: theme('colors.text');
+	border-radius: var(--button-radius, 10%);
+
+	transition: transform 0.1s;
+
+	&:hover {
+		background: var(--hover-color);
+	}
+
+	&:active:not(:disabled) {
+		background: var(--active-color);
+		box-shadow: var(--button-active-shadow);
+
+		transform: scale(0.95);
+	}
+}

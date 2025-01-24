@@ -1,0 +1,20 @@
+.button.basic {
+	color: var(--color);
+	border-radius: var(--button-radius, 10%);
+	background: transparent;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	transition: transform 0.1s;
+
+	&:hover:not(:disabled) {
+		background: color-mix(in srgb, var(--color), transparent 90%);
+	}
+
+	&:active:not(:disabled) {
+		background: color-mix(in srgb, var(--color), transparent 80%);
+		transform: scale(0.95);
+	}
+}

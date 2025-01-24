@@ -1,0 +1,29 @@
+@mixin icon-button {
+	display: grid;
+	place-content: center;
+
+	color: var(--color);
+	border-radius: 50%;
+	background: transparent;
+
+	width: 2.5rem;
+	aspect-ratio: 1;
+
+	padding: 0.1rem;
+	font-size: 1.5rem;
+
+	transition: transform 0.1s;
+
+	&:hover:not(:disabled) {
+		background: color-mix(in srgb, var(--color), transparent 90%);
+	}
+
+	&:active:not(:disabled) {
+		background: color-mix(in srgb, var(--color), transparent 80%);
+		transform: scale(0.95);
+	}
+}
+
+.button.icon {
+	@include icon-button;
+}
