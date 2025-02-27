@@ -34,7 +34,7 @@ export default function VPostPreview({ post }: { post: PostPreview }) {
         </ul>
       </footer>
 
-      <a href={`/blogs/${post.id}`} class="absolute inset-0 w-full h-full" />
+      <a href={`/posts/${post.id}`} class="absolute inset-0 w-full h-full" />
     </article>
   );
 }

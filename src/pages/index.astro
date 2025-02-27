@@ -8,33 +8,32 @@ import VPostPreview from '@/components/VPostPreview.tsx';
 import ViewMore from '@/components/ViewMore.tsx';
 
 import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import type { PostPreview } from '@/lib/types';
 
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
-const post = {
-	id: '1',
-	title: 'My first post',
-	preview: 'My first post',
-	mainImage: 'https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-	category: {
-		id: '1',
-		name: 'Astro',
-	},
-	createdAt: new Date(),
-	subCategories: [{
-		id: '1',
-		name: 'Astro',
-	}],
-	tags: [
-		{
+const articles = await getCollection("articles");
+
+const latestsP = articles.map(async (content): Promise<PostPreview> => {
+	const { remarkPluginFrontmatter } = await content.render();
+
+	return {
+		id: content.slug,
+		tags: [],
+		title: content.data.title,
+		preview: '',
+		category: {
 			id: '1',
 			name: 'Astro',
-		}
-	],
-};
+		},
+		subCategories: [],
+		createdAt: remarkPluginFrontmatter.lastModified.toJSON(),
+	};
+}).slice();
+const latests = await Promise.all(latestsP);
 
-const latests: any[] = [post, post, post] ;
 const bellowBlogs = latests.slice(1);
 
 const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;

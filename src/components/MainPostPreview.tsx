@@ -28,7 +28,7 @@ export default function MainPostPreview({
   subCategories: SubCategory[];
   tags: Tag[];
 }) {
-  const blogUrl = `/blogs/${id}`;
+  const blogUrl = `/posts/${id}`;
 
   return (
     <article class="grid grid-cols-[2fr_1fr] gap-4">
