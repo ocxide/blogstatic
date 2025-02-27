@@ -1,27 +1,7 @@
-export type PostPreview = {
+export type ArticlePreview = {
 	id: string;
 	title: string;
-	preview: string;
 	mainImage?: string;
-	createdAt: string;
-	category: Category;
-	tags: Tag[];
-	subCategories: SubCategory[];
+	createdAt: Date;
+	tags: string[];
 };
-
-export type Category = {
-  id: string;
-  name: string;
-};
-
-export type SubCategory = {
-  id: string;
-  name: string;
-};
-
-export type Tag = {
-  id: string;
-  name: string;
-  color: string;
-};
-

@@ -1,35 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-import MainPostPreview from '@/components/MainPostPreview.tsx';
+import MainArticlePreview from '@/components/MainArticlePreview.astro';
+import VArticlePreview from '@/components/VArticlePreview.astro';
+
 import Carousel from '@/components/Carousel.tsx';
 
-import VPostPreview from '@/components/VPostPreview.tsx';
-import ViewMore from '@/components/ViewMore.tsx';
+import ViewMore from '@/components/ViewMore.astro';
 
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
-import type { PostPreview } from '@/lib/types';
+
+import type { ArticlePreview } from '@/lib/types';
 
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
 const articles = await getCollection("articles");
 
-const latestsP = articles.map(async (content): Promise<PostPreview> => {
+const latestsP = articles.map(async (content): Promise<ArticlePreview> => {
 	const { remarkPluginFrontmatter } = await content.render();
 
 	return {
 		id: content.slug,
-		tags: [],
+		tags: content.data.tags,
 		title: content.data.title,
-		preview: '',
-		category: {
-			id: '1',
-			name: 'Astro',
-		},
-		subCategories: [],
-		createdAt: remarkPluginFrontmatter.lastModified.toJSON(),
+		mainImage: '',
+		createdAt: remarkPluginFrontmatter.lastModified  as Date,
 	};
 }).slice();
 const latests = await Promise.all(latestsP);
@@ -63,16 +60,13 @@ function chunks<T>(array: T[], size: number): T[][] {
 
 			{
 				latests.at(0) && (
-					<MainPostPreview
-						preview={latests[0].preview}
+					<MainArticlePreview
+						postUrl={`/articles/${latests[0].id}`}
 						title={latests[0].title}
 						mainImage={latests[0].mainImage}
-						id={latests[0].id}
-						category={latests[0].category}
 						createdAt={latests[0].createdAt}
-						subCategories={latests[0].subCategories}
 						tags={latests[0].tags}
-					/>
+					></MainArticlePreview>
 				)
 			}
 
@@ -87,7 +81,7 @@ function chunks<T>(array: T[], size: number): T[][] {
 						<ul class="chunk grid sm:grid-cols-3 mx-16 sm:mx-0 gap-2">
 							{chunk.map(post => (
 								<li class="min-w-0">
-									<VPostPreview post={post} />
+									<VArticlePreview article={post} />
 								</li>
 							))}
 

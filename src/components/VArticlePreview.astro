@@ -1,0 +1,29 @@
+---
+import { type ArticlePreview } from '@/lib/types';
+import Tags from './Tags.astro';
+
+interface Props {
+	article: ArticlePreview,
+}
+
+const { article: post } = Astro.props;
+---
+
+<article class="relative grid grid-rows-[auto_auto_auto_1fr] group">
+	<div class="w-full aspect-[2/1] overflow-hidden">
+		<img
+			src={post.mainImage}
+			alt={`${post.title}`}
+			class="group-hover:scale-110 w-full h-full object-cover object-center transition-transform"
+		/>
+	</div>
+
+	<h4>{post.title}</h4>
+
+	<footer class="flex gap-x-4 overflow-auto">
+		<Tags tags={post.tags} />
+	</footer>
+
+	<a href={`/articles/${post.id}`} class="absolute inset-0 w-full h-full" />
+</article>
+

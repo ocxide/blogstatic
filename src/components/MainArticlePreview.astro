@@ -1,0 +1,47 @@
+---
+import Tags from './Tags.astro';
+
+export interface Props {
+	title: string;	
+	mainImage?: string;
+	postUrl: string;
+	createdAt: Date;
+	tags: string[];
+}
+
+const { title, mainImage, postUrl, createdAt, tags } = Astro.props;
+
+export function format(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
+  return `${day}/${month}/${year}`;
+}
+---
+
+<article class="grid grid-cols-[2fr_1fr] gap-4">
+	{mainImage && (
+		<a href={postUrl}>
+			<img
+				src={mainImage}
+				alt=""
+				class="h-full w-full object-cover object-center aspect-[2/1]"
+			/>
+		</a>
+	)}
+	<section class="p-2 grid grid-rows-[auto_1fr_auto]">
+		<a href={postUrl}>
+			<h4>{title}</h4>
+			<small>{format(createdAt)}</small>
+		</a>
+
+		<div>
+			<slot />
+		</div>
+
+		<footer class="grid">
+			<Tags tags={tags} />
+		</footer>
+	</section>
+</article>
