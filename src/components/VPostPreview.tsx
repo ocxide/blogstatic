@@ -1,7 +1,7 @@
-import type { BlogPreview } from "@/lib/types";
+import type { PostPreview } from "@/lib/types";
 import { CategoryText, SubCategories, TagComponent } from "./BlogUtils";
 
-export default function VPostPreview({ post }: { post: BlogPreview }) {
+export default function VPostPreview({ post }: { post: PostPreview }) {
   return (
     <article class="relative grid grid-rows-[auto_auto_auto_1fr] group">
       <div class="w-full aspect-[2/1] overflow-hidden">

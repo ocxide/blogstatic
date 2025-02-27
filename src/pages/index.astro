@@ -12,10 +12,10 @@ import { Icon } from 'astro-icon/components';
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
-const blog = {
+const post = {
 	id: '1',
-	title: 'My first blog',
-	preview: 'My first blog',
+	title: 'My first post',
+	preview: 'My first post',
 	mainImage: 'https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
 	category: {
 		id: '1',
@@ -34,7 +34,7 @@ const blog = {
 	],
 };
 
-const latests: any[] = [blog, blog, blog] ;
+const latests: any[] = [post, post, post] ;
 const bellowBlogs = latests.slice(1);
 
 const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
@@ -53,7 +53,7 @@ function chunks<T>(array: T[], size: number): T[][] {
 }
 ---
 
-<Layout title='Static blog'>
+<Layout title='Static post'>
 		<main class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto pt-6">
 		<h2>MeBlog</h2>
 
@@ -86,9 +86,9 @@ function chunks<T>(array: T[], size: number): T[][] {
 				{
 					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
 						<ul class="chunk grid sm:grid-cols-3 mx-16 sm:mx-0 gap-2">
-							{chunk.map(blog => (
+							{chunk.map(post => (
 								<li class="min-w-0">
-									<VPostPreview post={blog} />
+									<VPostPreview post={post} />
 								</li>
 							))}
 
