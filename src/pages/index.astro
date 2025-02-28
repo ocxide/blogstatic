@@ -25,8 +25,8 @@ const latestsP = articles.map(async (content): Promise<ArticlePreview> => {
 		id: content.slug,
 		tags: content.data.tags,
 		title: content.data.title,
-		mainImage: '',
-		createdAt: remarkPluginFrontmatter.lastModified  as Date,
+		cover: content.data.cover,
+		createdAt: remarkPluginFrontmatter.lastModified as Date,
 	};
 }).slice();
 const latests = await Promise.all(latestsP);
@@ -60,13 +60,7 @@ function chunks<T>(array: T[], size: number): T[][] {
 
 			{
 				latests.at(0) && (
-					<MainArticlePreview
-						postUrl={`/articles/${latests[0].id}`}
-						title={latests[0].title}
-						mainImage={latests[0].mainImage}
-						createdAt={latests[0].createdAt}
-						tags={latests[0].tags}
-					></MainArticlePreview>
+					<MainArticlePreview  article={latests.at(0)!} />
 				)
 			}
 

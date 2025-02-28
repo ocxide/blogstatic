@@ -1,15 +1,13 @@
 ---
+import type { ArticlePreview } from '@/lib/types';
+import ArticleImage from './ArticleImage.astro';
 import Tags from './Tags.astro';
 
 export interface Props {
-	title: string;	
-	mainImage?: string;
-	postUrl: string;
-	createdAt: Date;
-	tags: string[];
+	article: ArticlePreview;
 }
 
-const { title, mainImage, postUrl, createdAt, tags } = Astro.props;
+const { article: { title, cover, createdAt, tags, id } } = Astro.props;
 
 export function format(date: Date): string {
   const year = date.getFullYear();
@@ -18,18 +16,15 @@ export function format(date: Date): string {
 
   return `${day}/${month}/${year}`;
 }
+
+const postUrl = `/articles/${id}`;
 ---
 
 <article class="grid grid-cols-[2fr_1fr] gap-4">
-	{mainImage && (
-		<a href={postUrl}>
-			<img
-				src={mainImage}
-				alt=""
-				class="h-full w-full object-cover object-center aspect-[2/1]"
-			/>
-		</a>
-	)}
+	<a class="relative overflow-hidden rounded-l-md group" href={postUrl}>
+		{cover && <ArticleImage src={cover} alt={title} />}
+	</a>
+
 	<section class="p-2 grid grid-rows-[auto_1fr_auto]">
 		<a href={postUrl}>
 			<h4>{title}</h4>

@@ -1,6 +1,7 @@
 ---
 import { type ArticlePreview } from '@/lib/types';
 import Tags from './Tags.astro';
+import ArticleImage from './ArticleImage.astro';
 
 interface Props {
 	article: ArticlePreview,
@@ -11,11 +12,7 @@ const { article: post } = Astro.props;
 
 <article class="relative grid grid-rows-[auto_auto_auto_1fr] group">
 	<div class="w-full aspect-[2/1] overflow-hidden">
-		<img
-			src={post.mainImage}
-			alt={`${post.title}`}
-			class="group-hover:scale-110 w-full h-full object-cover object-center transition-transform"
-		/>
+		{post.cover && <ArticleImage src={post.cover} alt={post.title} />}
 	</div>
 
 	<h4>{post.title}</h4>

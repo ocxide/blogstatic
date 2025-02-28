@@ -1,0 +1,13 @@
+---
+import { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets';
+
+export interface Props {
+	src: ImageMetadata,
+	alt: string;
+}
+
+const { src, alt } = Astro.props;
+---
+
+<Image src={src} alt={alt} class="group-hover:scale-110 w-full h-full object-cover object-center transition-transform" />
