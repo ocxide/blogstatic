@@ -4,6 +4,9 @@ import { type GetStaticPaths } from 'astro';
 import { getEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 
+import blogFrameStyles from '../../styles/_blog_frame.scss';
+import Tags from '@/components/Tags.astro';
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await getCollection("articles");
 
@@ -19,7 +22,15 @@ const { Content } =  await entry.render();
 ---
 
 <Layout title={entry.data.title}>
-	<article>
-		<Content />
+	<link slot="head" rel="stylesheet" href={blogFrameStyles} />
+
+	<article class="container mx-auto">
+		<section class="blog-frame ">
+			<Content />
+		</section>
+
+		<footer>
+			<Tags tags={entry.data.tags} />
+		</footer>
 	</article>
 </Layout>

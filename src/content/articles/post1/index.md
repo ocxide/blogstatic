@@ -9,8 +9,12 @@ tags:
 
 # Hello my friends
 
-This is my first post
+This is my first post `aaa`
 
 image:
 
 ![My image](main.webp)
+
+```js
+console.log("Hello world")
+```

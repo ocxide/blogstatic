@@ -21,6 +21,8 @@ const { title, description } = Astro.props;
 		<link rel="stylesheet" href={stylesUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<slot name="head" />
 	</head>
 	<body class="text-text">
 		<Header />
