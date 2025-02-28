@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+export type Props = HTMLAttributes<'code'>;
+
+const html = await Astro.slots.render('default');
+const isBlock = html.startsWith('<span class=');
+---
+
+{
+isBlock && 
+        <div class="code-block">
+            <div class="code-header">
+                <!-- <span>{language}</span> -->
+                <div class="copy">
+                    <!-- <Feedback opened={opeend} text="Copied!" /> -->
+									<button class="copy-btn">
+										<Icon name="mdi:content-copy"/>
+									</button>
+
+                </div>
+            </div>
+<code>
+	<slot />
+</code>
+        </div>
+
+}
+
+{
+!isBlock &&
+<code><slot /></code>
+}

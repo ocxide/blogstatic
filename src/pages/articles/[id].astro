@@ -7,6 +7,8 @@ import { getCollection } from 'astro:content';
 import blogFrameStyles from '../../styles/_blog_frame.scss';
 import Tags from '@/components/Tags.astro';
 
+import Code from '@/components/markdown/Code.astro';
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await getCollection("articles");
 
@@ -19,6 +21,10 @@ const { id } = Astro.params;
 const entry = await getEntry("articles", id as string)!;
 
 const { Content } =  await entry.render();
+
+const components = {
+	code: Code,
+}
 ---
 
 <Layout title={entry.data.title}>
@@ -26,7 +32,7 @@ const { Content } =  await entry.render();
 
 	<article class="container mx-auto">
 		<section class="blog-frame ">
-			<Content />
+			<Content components={components} />
 		</section>
 
 		<footer>
