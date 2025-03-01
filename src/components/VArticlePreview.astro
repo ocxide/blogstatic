@@ -1,5 +1,5 @@
 ---
-import { type ArticlePreview } from '@/lib/types';
+import { type ArticlePreview } from '@/lib/articles';
 import Tags from './Tags.astro';
 import ArticleImage from './ArticleImage.astro';
 
@@ -16,6 +16,8 @@ const { article: post } = Astro.props;
 	</div>
 
 	<h4>{post.title}</h4>
+
+	<section>{post.description}</section>
 
 	<footer class="flex gap-x-4 overflow-auto">
 		<Tags tags={post.tags} />
