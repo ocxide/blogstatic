@@ -1,41 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-import MainArticlePreview from '@/components/MainArticlePreview.astro';
-import VArticlePreview from '@/components/VArticlePreview.astro';
+import MainArticlePreview from "@/components/MainArticlePreview.astro";
+import VArticlePreview from "@/components/VArticlePreview.astro";
 
-import Carousel from '@/components/Carousel.tsx';
+import Carousel from "@/components/Carousel.tsx";
 
-import ViewMore from '@/components/ViewMore.astro';
+import ViewMore from "@/components/ViewMore.astro";
 
-import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
-
-import type { ArticlePreview } from '@/lib/types';
+import { Icon } from "astro-icon/components";
+import { getArticlePreviews } from "@/lib/articles";
 
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
-const articles = await getCollection("articles");
-
-const latestsP = articles.map(async (content): Promise<ArticlePreview> => {
-	const { remarkPluginFrontmatter } = await content.render();
-
-	return {
-		id: content.slug,
-		tags: content.data.tags,
-		title: content.data.title,
-		cover: content.data.cover,
-		createdAt: new Date(remarkPluginFrontmatter.lastModified as Date),
-	};
-}).slice();
-const latests = await Promise.all(latestsP);
+const latests = (await getArticlePreviews()).slice(0, 10);
 
 const bellowBlogs = latests.slice(1);
 
 const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
 const pages =
-	Math.floor((bellowBlogs.length - 1) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
+	Math.floor((bellowBlogs.length - 1) / LATEST_PAGE_SIZE) +
+	1 +
+	(isExact ? 1 : 0);
 
 function chunks<T>(array: T[], size: number): T[][] {
 	const nChunks = Math.floor((array.length - 1) / size) + 1;
@@ -49,60 +36,51 @@ function chunks<T>(array: T[], size: number): T[][] {
 }
 ---
 
-<Layout title='Static post'>
-		<main class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto pt-6">
-		<h2>MeBlog</h2>
+<Layout title="Static post">
+  <main class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto pt-6">
+    <h2>MeBlog</h2>
 
-		<hr class="mb-4" />
+    <hr class="mb-4" />
 
-		<section>
-			<h3>Latests</h3>
+    <section>
+      <h3>Latests</h3>
 
-			{
-				latests.at(0) && (
-					<MainArticlePreview  article={latests.at(0)!} />
-				)
-			}
+      {latests.at(0) && <MainArticlePreview article={latests.at(0)!} />}
 
-			<hr class="my-3" />
+      <hr class="my-3" />
 
-			<Carousel client:load pages={pages} class="carousel-collapse">
-				<Icon name="mdi:navigate-before" slot="leftIcon" />
-				<Icon name="mdi:navigate-next" slot="rightIcon" />
+      <Carousel client:load pages={pages} class="carousel-collapse">
+        <Icon name="mdi:navigate-before" slot="leftIcon" />
+        <Icon name="mdi:navigate-next" slot="rightIcon" />
 
-				{
-					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
-						<ul class="chunk grid sm:grid-cols-3 mx-16 sm:mx-0 gap-2">
-							{chunk.map(post => (
-								<li class="min-w-0">
-									<VArticlePreview article={post} />
-								</li>
-							))}
+        {
+          chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
+            <ul class="chunk grid sm:grid-cols-3 mx-16 sm:mx-0 gap-2">
+              {chunk.map((post) => (
+                <li class="min-w-0">
+                  <VArticlePreview article={post} />
+                </li>
+              ))}
 
-							{!(!isExact && i === pages - 1) ? null : (
-								<li class="grid">
-									<ViewMore />
-								</li>
-							)}
-						</ul>
-					))
-				}
+              {!(!isExact && i === pages - 1) ? null : (
+                <li class="grid">
+                  <ViewMore />
+                </li>
+              )}
+            </ul>
+          ))
+        }
 
-				{
-					!isExact ? null : (
-					<ViewMore />
-					)
-				}
-			</Carousel>
-		</section>
-	</main>
+        {!isExact ? null : <ViewMore />}
+      </Carousel>
+    </section>
+  </main>
 
-	<noscript>
-		<style>
-			.carousel-collapse {
-				display: unset;
-			}
-		</style>
-	</noscript>
-
+  <noscript>
+    <style>
+      .carousel-collapse {
+        display: unset;
+      }
+    </style>
+  </noscript>
 </Layout>
