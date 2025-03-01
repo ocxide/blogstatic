@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import type { HTMLAttributes } from "astro/types";
+
+import Copy from "./Copy.tsx";
+
+export type Props = HTMLAttributes<"code">;
+
+const codeId = crypto.randomUUID();
+
+let html = await Astro.slots.render("default");
+html = html.replace(">", ` id="${codeId}">`);
+---
+
+<div class="code-block">
+  <div class="code-header">
+    <span>language</span>
+
+    <Copy codeId={codeId} client:load>
+      <Icon name="mdi:content-copy" />
+    </Copy>
+  </div>
+
+	<pre class="code">
+		<Fragment set:html={html} />
+	</pre>
+</div>

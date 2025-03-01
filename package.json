@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "daisyui": "^4.12.23",
+    "prettier": "^3.5.2",
+    "prettier-plugin-astro": "^0.14.1",
     "sass-embedded": "^1.83.4"
   }
 }

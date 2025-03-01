@@ -26,7 +26,7 @@ const latestsP = articles.map(async (content): Promise<ArticlePreview> => {
 		tags: content.data.tags,
 		title: content.data.title,
 		cover: content.data.cover,
-		createdAt: remarkPluginFrontmatter.lastModified as Date,
+		createdAt: new Date(remarkPluginFrontmatter.lastModified as Date),
 	};
 }).slice();
 const latests = await Promise.all(latestsP);
