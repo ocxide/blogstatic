@@ -10,6 +10,9 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.1.5
     version: 5.1.5(astro@5.1.9)(tailwindcss@3.4.17)
+  '@fontsource/bitter':
+    specifier: ^5.0.18
+    version: 5.0.18
   '@iconify-json/mdi':
     specifier: ^1.2.3
     version: 1.2.3
@@ -624,6 +627,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@fontsource/bitter@5.0.18:
+    resolution: {integrity: sha512-DUqaee8bFGXpPwROxXl2A1TM/uMUb7+FllcMjWodYTXqT0dgmp8P91shPhS2Z02YFD1Og8pp+Cu6LemsCWad0A==}
+    dev: false
 
   /@iconify-json/mdi@1.2.3:
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}

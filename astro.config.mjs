@@ -11,7 +11,6 @@ import { remarkLastModified } from "./src/remark/last-modified.mjs";
 export default defineConfig({
 	integrations: [tailwind(), solidJs(), mdx(), icon()],
 	markdown: {
-		remarkPlugins: [remarkLastModified]
-	}
+		remarkPlugins: [remarkLastModified],
+	},
 });
-
