@@ -1,8 +1,8 @@
-@use './theme';
-@forward './button';
-@forward './link';
-@forward './card';
-@forward './dialog';
+@use "./theme";
+@forward "./button";
+@forward "./link";
+@forward "./card";
+@forward "./dialog";
 
 @tailwind base;
 @tailwind components;
@@ -13,16 +13,16 @@
 // @forward '../lib/modules/ui/font/styles.scss';
 
 body {
-	&.dark {
-		@include theme.dark();
-	}
+  &.dark {
+    @include theme.dark();
+  }
 
-	@include theme.bindings();
-	@include theme.light();
+  @include theme.light();
 }
 
 @media (prefers-color-scheme: dark) {
-	body {
-		@include theme.dark();
-	}
+  body {
+    @include theme.bindings();
+    @include theme.dark();
+  }
 }

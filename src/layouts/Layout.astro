@@ -1,10 +1,10 @@
 ---
-import stylesUrl from '../styles/_index.scss';
-import '@fontsource/bitter';
+import "@/styles/_index.scss";
+import "@fontsource/bitter";
 
-import Footer from '@/components/layout/Footer.astro';
-import Header from '@/components/layout/Header.astro';
-import { ClientRouter } from 'astro:transitions';
+import Footer from "@/components/layout/Footer.astro";
+import Header from "@/components/layout/Header.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	title: string;
@@ -16,54 +16,52 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		{description && <meta name="description" content={description} />}
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="stylesheet" href={stylesUrl} />
-		<meta name="generator" content={Astro.generator} />
-		<ClientRouter />
-		<title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
+    <title>{title}</title>
 
-		<slot name="head" />
-	</head>
-	<body class="text-text">
-		<Header />
+    <slot name="head" />
+  </head>
+  <body class="text-text">
+    <Header />
 
-		<slot />
+    <slot />
 
-		<Footer />
-	</body>
+    <Footer />
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		font-family: 'Bitter', serif;
-	}
+  :root {
+    font-family: "Bitter", serif;
+  }
 
-	body {
-		display: grid;
-		grid-template-rows: auto 1fr auto;
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
-		background-color: var(--app-bg-color);
+    background-color: var(--app-bg-color);
 
-		min-height: 100vh;
-	}
+    min-height: 100vh;
+  }
 
-	h2 {
-		font-size: 3rem;
-		font-weight: 600;
-	}
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
 
-	h3 {
-		font-size: 2rem;
-		font-weight: 600;
-	}
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
 
-	h4 {
-		font-size: 1.5rem;
-		font-weight: 600;
-	}
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 </style>
-
