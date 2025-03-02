@@ -11,6 +11,7 @@ import { Icon } from "astro-icon/components";
 import Pre from "@/components/markdown/Pre.astro";
 import Anchor from "@/components/markdown/Anchor.astro";
 import Img from "@/components/markdown/Img.astro";
+import { renderArticle } from "@/lib/articles";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const articles = await getCollection("articles");
@@ -23,7 +24,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const { id } = Astro.params;
 const entry = await getEntry("articles", id as string)!;
 
-const { Content } = await entry.render();
+const {
+	preview,
+	render: { Content },
+} = await renderArticle(entry);
 
 const components = {
 	pre: Pre,
@@ -32,10 +36,7 @@ const components = {
 };
 ---
 
-<Layout
-  title={`${entry.data.title} | ocxide`}
-  description={entry.data.description}
->
+<Layout title={`${preview.title} | ocxide`} description={preview.description}>
   <link slot="head" rel="stylesheet" href={blogFrameStyles} />
 
   <main class="container mx-auto">
