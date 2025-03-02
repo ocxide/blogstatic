@@ -1,12 +1,13 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 import { type GetStaticPaths } from "astro";
 import { getEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-import blogFrameStyles from "../../styles/_blog_frame.scss";
+import Layout from "@/layouts/Layout.astro";
+import "../../styles/_blog_frame.scss";
+
 import Tags from "@/components/Tags.astro";
-import { Icon } from "astro-icon/components";
 
 import Pre from "@/components/markdown/Pre.astro";
 import Anchor from "@/components/markdown/Anchor.astro";
@@ -37,7 +38,6 @@ const components = {
 ---
 
 <Layout title={`${preview.title} | ocxide`} description={preview.description}>
-  <link slot="head" rel="stylesheet" href={blogFrameStyles} />
 
   <main class="container mx-auto">
     <nav>
