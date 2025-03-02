@@ -1,0 +1,13 @@
+---
+import { getTransitionName } from "@/lib/cover-transition";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+export interface Props {
+	src: ImageMetadata;
+}
+
+const transitionName = getTransitionName(Astro.props.src.src);
+---
+
+<Image transition:name={transitionName} {...Astro.props as any} />

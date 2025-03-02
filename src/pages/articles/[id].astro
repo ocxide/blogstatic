@@ -6,10 +6,11 @@ import { getCollection } from "astro:content";
 
 import blogFrameStyles from "../../styles/_blog_frame.scss";
 import Tags from "@/components/Tags.astro";
+import { Icon } from "astro-icon/components";
 
 import Pre from "@/components/markdown/Pre.astro";
 import Anchor from "@/components/markdown/Anchor.astro";
-import { Icon } from "astro-icon/components";
+import Img from "@/components/markdown/Img.astro";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const articles = await getCollection("articles");
@@ -27,6 +28,7 @@ const { Content } = await entry.render();
 const components = {
 	pre: Pre,
 	a: Anchor,
+	img: Img,
 };
 ---
 
@@ -40,8 +42,8 @@ const components = {
     <nav>
       <a class="link flex gap-1 items-center w-min pr-10" href="/articles">
         <Icon name="mdi:keyboard-backspace" />
-				All
-			</a>
+        All
+      </a>
     </nav>
 
     <article>

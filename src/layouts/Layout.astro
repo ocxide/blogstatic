@@ -4,6 +4,7 @@ import '@fontsource/bitter';
 
 import Footer from '@/components/layout/Footer.astro';
 import Header from '@/components/layout/Header.astro';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -22,6 +23,7 @@ const { title, description } = Astro.props;
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href={stylesUrl} />
 		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
 		<title>{title}</title>
 
 		<slot name="head" />
