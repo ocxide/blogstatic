@@ -1,4 +1,4 @@
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import type { ImageInputFormat } from "astro";
 
 export type ArticlePreview = {
@@ -21,13 +21,16 @@ export async function getArticlePreviews() {
 	const articles = await getCollection("articles");
 
 	const promises = articles.map(async (content): Promise<ArticlePreview> => {
-		const { remarkPluginFrontmatter } = await content.render();
+		const { remarkPluginFrontmatter, headings } = await content.render();
 
-		render;
+		const title =
+			content.data.title ??
+			headings.find((h) => h.depth === 1)?.text ??
+			"NO TITLE :(";
 
 		return {
 			id: content.slug,
-			title: content.data.title,
+			title,
 			description: content.data.description ?? "",
 			tags: content.data.tags,
 			cover: content.data.cover,
