@@ -10,11 +10,14 @@ const codeId = crypto.randomUUID();
 
 let html = await Astro.slots.render("default");
 html = html.replace(">", ` id="${codeId}">`);
+
+
+const language = Astro.props['data-language'] as string;
 ---
 
-<div class="code-block">
+<div class="code-block" >
   <div class="code-header">
-    <span>language</span>
+		<span>{language}</span>
 
     <Copy codeId={codeId} client:load>
       <Icon name="mdi:content-copy" />
