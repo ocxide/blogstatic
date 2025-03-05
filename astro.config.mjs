@@ -12,5 +12,8 @@ export default defineConfig({
 	integrations: [tailwind(), solidJs(), mdx(), icon()],
 	markdown: {
 		remarkPlugins: [remarkLastModified],
+		shikiConfig: {
+			theme: "dracula",
+		},
 	},
 });
