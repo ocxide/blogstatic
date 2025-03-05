@@ -1,5 +1,5 @@
-@use './link/link';
-@use './button/styles/_icon.scss' as icon;
+@use "./link/link";
+@use "./button/styles/_icon.scss" as icon;
 
 $border-color: var(--primary-text-color);
 $inset-bg: var(--card-bg-color);
@@ -7,199 +7,197 @@ $inset-bg: var(--card-bg-color);
 $normal-font-size: 18px;
 
 @mixin code-box() {
-	// background-color: $inset-bg;
-	// border-radius: 3px;
-	// border: 1px solid $border-color;
+  // background-color: $inset-bg;
+  // border-radius: 3px;
+  // border: 1px solid $border-color;
 }
 
 .blog-frame {
+  h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid $border-color;
+    padding-bottom: 0.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 
-	h1 {
-		font-size: 2.5rem;
-		border-bottom: 2px solid $border-color;
-		padding-bottom: 0.4rem;
-		margin-top: 1rem;
-		margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
 
-		line-height: 1.2;
-	}
+  h2 {
+    font-size: 2rem;
+    border-bottom: 1px solid $border-color;
 
-	h2 {
-		font-size: 2rem;
-		border-bottom: 1px solid $border-color;
+    margin: 1rem 0;
+    padding-bottom: 0.5rem;
 
-		margin: 1rem 0;
-		padding-bottom: 0.5rem;
+    line-height: 1.2;
+  }
 
-		line-height: 1.2;
-	}
+  // Inline code tags
+  p {
+    font-size: $normal-font-size;
 
-	// Inline code tags
-	p {
-		font-size: $normal-font-size;
+    code {
+      @include code-box();
+      vertical-align: middle;
+      white-space: nowrap;
 
-		code {
-			@include code-box();
-			vertical-align: middle;
-			white-space: nowrap;
+      font-size: 14px;
 
-			font-size: 14px;
+      padding: 0.2rem 0.4rem;
+    }
+  }
 
-			padding: 0.2rem 0.4rem;
-		}
-	}
+  ul {
+    list-style-type: disclosure-closed;
+  }
 
-	ul {
-		list-style-type: disclosure-closed;
-	}
+  a {
+    background-image: linear-gradient(
+      90deg,
+      theme("colors.primary.DEFAULT"),
+      theme("colors.accent.DEFAULT")
+    );
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
 
-	a {
-		background-image: linear-gradient(
-			90deg,
-			theme('colors.primary.DEFAULT'),
-			theme('colors.accent.DEFAULT')
-		);
-		background-size: 100% 1px;
-		background-repeat: no-repeat;
-		background-position: left bottom;
+    transition: background-size 50ms ease-out;
 
-		transition: background-size 50ms ease-out;
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
 
-		&:hover {
-			background-size: 100% 100%;
-		}
-	}
+  .code-block {
+    display: grid;
+    border-radius: 0.2rem;
+    background: var(--card-bg-color);
+    border: 1px solid var(--card-shadow-color);
 
-	.code-block {
-		display: grid;
-		border-radius: 0.2rem;
-		background: var(--card-bg-color);
-		border: 1px solid var(--card-shadow-color);
+    margin-bottom: 1rem;
+    color: var(--primary-text-color);
+  }
 
-		margin-bottom: 1rem;
-		color: var(--primary-text-color);
-	}
+  // Code blocks
+  pre {
+    @include code-box();
 
-	// Code blocks
-	pre {
-		@include code-box();
+    overflow-x: auto;
+    padding: 1rem;
 
-		overflow-x: auto;
-		padding: 1rem;
+    code {
+      display: block;
+      min-width: max-content;
 
+      font-size: 1rem;
+      white-space: pre-wrap;
+    }
+  }
 
-		code {
-			display: block;
-			min-width: max-content;
+  p {
+    margin-bottom: 1rem;
+  }
 
-			font-size: 1rem;
-			white-space: pre-wrap;
-		}
-	}
-
-	p {
-		margin-bottom: 1rem;
-	}
-
-	img {
-		margin: auto;
-		max-height: 500px;
-		max-width: 100%;
+  img {
+    margin: auto;
+    max-height: 500px;
+    max-width: 100%;
 
     width: auto;
-	}
+  }
 
-	.code-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding-top: 0.2rem;
-		padding-right: 0.2rem;
-		padding-left: 1rem;
-	}
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.2rem;
+    padding-right: 0.2rem;
+    padding-left: 1rem;
+  }
 
-	.copy-btn {
-		@include icon.icon-button();
+  .copy-btn {
+    @include icon.icon-button();
 
-		--color: currentColor;
-		width: 2rem;
-		height: 2rem;
-		font-size: 16px;
-	}
+    --color: currentColor;
+    width: 2rem;
+    height: 2rem;
+    font-size: 16px;
+  }
 
-	.copy {
-		position: relative;
+  .copy {
+    position: relative;
 
-		.feedback {
-			@apply rounded-sm;
+    .feedback {
+      @apply rounded-sm;
 
-			--tooltip-arrow-size: 0.35rem;
-			--tooltip-bg: theme('colors.accent.DEFAULT');
+      --tooltip-arrow-size: 0.35rem;
+      --tooltip-bg: theme("colors.accent.DEFAULT");
 
-			pointer-events: none;
-			user-select: none;
+      pointer-events: none;
+      user-select: none;
 
-			position: absolute;
-			background-color: var(--tooltip-bg);
+      position: absolute;
+      background-color: var(--tooltip-bg);
 
-			left: -5.5rem;
-			top: 2px;
+      left: -5.5rem;
+      top: 2px;
 
-			z-index: 99;
-			padding: 0.125rem 0.75rem;
-			margin-inline-end: var(--tooltip-arrow-size);
+      z-index: 99;
+      padding: 0.125rem 0.75rem;
+      margin-inline-end: var(--tooltip-arrow-size);
 
-			animation-name: fadeinUp;
-			animation-duration: 100ms;
-			animation-timing-function: ease-in;
-		}
+      animation-name: fadeinUp;
+      animation-duration: 100ms;
+      animation-timing-function: ease-in;
+    }
 
-		.feedback::after {
-			content: '';
-			position: absolute;
-			pointer-events: none;
-			top: calc(50% - var(--tooltip-arrow-size));
-			inset-inline-end: calc(-2 * (var(--tooltip-arrow-size) - 0.5px));
-			border: var(--tooltip-arrow-size) solid transparent;
-			border-inline-start-color: var(--tooltip-bg);
-		}
+    .feedback::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      top: calc(50% - var(--tooltip-arrow-size));
+      inset-inline-end: calc(-2 * (var(--tooltip-arrow-size) - 0.5px));
+      border: var(--tooltip-arrow-size) solid transparent;
+      border-inline-start-color: var(--tooltip-bg);
+    }
 
-		.feedback.closing {
-			animation-name: fadeoutDown;
-			animation-duration: 100ms;
-			animation-timing-function: ease-out;
-		}
-	}
+    .feedback.closing {
+      animation-name: fadeoutDown;
+      animation-duration: 100ms;
+      animation-timing-function: ease-out;
+    }
+  }
 
-	leptos-island {
-		display: contents;
-	}
+  leptos-island {
+    display: contents;
+  }
 
-	blockquote {
-		border-left: 3px solid var(--card-shadow-color);
-		padding-left: 1rem;
-		opacity: 0.6;
-	}
+  blockquote {
+    border-left: 3px solid var(--card-shadow-color);
+    padding-left: 1rem;
+    opacity: 0.6;
+  }
 }
 
 @keyframes fadeinUp {
-	from {
-		opacity: 0;
-		transform: translateY(1rem);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeoutDown {
-	from {
-		opacity: 1;
-		transform: translateY(0);
-	}
-	to {
-		opacity: 0;
-		transform: translateY(1rem);
-	}
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
 }
